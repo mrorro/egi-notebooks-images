@@ -4,13 +4,12 @@ FROM $BASE_IMAGE
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-#ENV LD_LIBRARY_PATH="${CONDA_DIR}/lib:${LD_LIBRARY_PATH}"
+ENV LD_LIBRARY_PATH="${CONDA_DIR}/lib:${LD_LIBRARY_PATH}"
 
 RUN mamba install -y --quiet \
 	nb_conda_kernels \
 	cudatoolkit=11.4.2 \
 	cudnn \
-	tensorflow \
 	matplotlib \
 	lightgbm \
 	eo-learn \
@@ -65,6 +64,7 @@ RUN pip install --no-cache-dir \
 	papermill \
 	jupyter-tensorboard-proxy \
 	mlflow-server-proxy \
+	tensorflow \
 	protobuf==4.21.9 \
 	torch==1.12.1+cu113 \
 	torchvision==0.13.1+cu113 \
