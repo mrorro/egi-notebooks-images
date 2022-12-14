@@ -16,7 +16,7 @@ RUN mamba install -y --quiet \
 	eo-learn \
 	plotly \
 	graphviz \
-	jp \
+	jq \
     && conda clean --all
 
 # Octave, install on a different environment
