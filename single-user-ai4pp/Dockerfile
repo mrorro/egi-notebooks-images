@@ -4,10 +4,19 @@ FROM $BASE_IMAGE
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
+#ENV LD_LIBRARY_PATH="${CONDA_DIR}/lib:${LD_LIBRARY_PATH}"
+
 RUN mamba install -y --quiet \
 	nb_conda_kernels \
-	cudatoolkit \
+	cudatoolkit=11.4.2 \
 	cudnn \
+	tensorflow \
+	matplotlib \
+	lightgbm \
+	eo-learn \
+	plotly \
+	graphviz \
+	jp \
     && conda clean --all
 
 # Octave, install on a different environment
@@ -51,16 +60,9 @@ RUN pip install --no-cache-dir \
 	panel \
 	jupyterlab-git \
 	jupyterlab-github \
-	graphviz \
-	jq \
-	eo-learn \
-	plotly \
-	lightgbm \
-	matplotlib \
 	mlflow \
 	fastai \
 	papermill \
-	tensorflow \
 	jupyter-tensorboard-proxy \
 	mlflow-server-proxy \
 	protobuf==4.21.9 \
